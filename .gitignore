@@ -1,2 +1,6 @@
 secret
+*/secret/*
+/secret/*
 venv
+*/venv
+__pycache__
