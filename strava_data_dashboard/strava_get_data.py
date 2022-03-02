@@ -84,7 +84,7 @@ bear_peak_count_2020 = df['bear_peak_count'][df['year'] == 2020].sum()
 bear_peak_count_2021 = df['bear_peak_count'][df['year'] == 2021].sum()
 
 # Drop unneeded columns
-df = activities.drop(labels=['is_a_bear', 'summit_repeats'], axis=1)
+df = df.drop(labels=['is_a_bear', 'summit_repeats'], axis=1)
 
 # add trend against best year?
 # further analysis on avg rate of ascent, avg ascent time, best time, etc..
