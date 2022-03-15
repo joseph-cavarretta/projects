@@ -23,3 +23,9 @@
 6. Build model
 7. Test and validate model
 '''
+
+"""
+Load model here so you can import to weather_API
+
+
+"""
