@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Tue Jul 13 10:55:31 2021
-
 @author: joe.cavarretta
 """
 import time
@@ -29,7 +28,7 @@ res = page_soup.find_all('div', {'class': 'location-item'})
 
 lst = []
 for r in res:
-    if 'USA' in r.text or 'Canada' in r.text:
+    if '<criteria>' in r.text:
         lst.append(r.text.split('  '))
 
 df = pd.DataFrame(lst)
@@ -38,12 +37,6 @@ df = pd.DataFrame(lst)
 cols = df.select_dtypes(['object']).columns
 df[cols] = df[cols].apply(lambda x: x.str.lstrip())
 df[cols] = df[cols].apply(lambda x: x.str.rstrip())
-
-## Parse column 3 to country
-df['country'] = np.where(df[3].str.contains('USA'), 'USA',
-                    np.where(df[4].str.contains('USA'), 'USA',
-                        np.where(df[3].str.contains('Canada'), 'Canada',
-                            np.where(df[4].str.contains('Canada'), 'Canada', np.nan))))
 
 ## Fix addresses that went to wrong column
 df[2] = np.where(df[2] == '', df[3], df[2])
