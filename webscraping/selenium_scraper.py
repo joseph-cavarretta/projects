@@ -8,8 +8,6 @@ from bs4 import BeautifulSoup as soup
 from selenium import webdriver
 import os
 import pandas as pd
-import numpy as np
-import pyodbc
 
 cwd = os.getcwd()
 
