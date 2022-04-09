@@ -24,7 +24,7 @@ tables = pd.read_html(url)
 table = tables[1]
 
 ## USE FIND() ON PAGE_SOUP OBJECT TO LOCATE NUMBER OF PAGES INFO
-res = page_soup.find("div", {"class": "servloc-pagination"}).text
+res = page_soup.find("div", {"class": "location-pagination"}).text
 
 ## PARSES OUT HOW MANY PAGES WE NEED TO ITERATE THROUGH
 page_total = int(res.split('/')[1].split('\xa0')[0])

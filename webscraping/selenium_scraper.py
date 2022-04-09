@@ -100,39 +100,3 @@ df['street_address'] = df['street_address'].replace(repl_dict, regex = True)
 df.to_csv('file.csv', index = False)
 
 print('Saved to CSV.')
-
-############### CONNECT TO DB ###############                                   # Connect to VPN
-conn = pyodbc.connect('DRIVER={SQL Server};'
-                      'SERVER=;'
-                      'DATABASE=;'
-                      'Trusted_Connection=yes;')
-
-print(conn)
-
-############### DEFINE READSQL CODE ###############
-def readSQL(file_path):
-    fd = open(file_path)
-    sql = fd.read()
-    fd.close()
-    return pd.read_sql(sql,conn)
-
-############## RUN SQL QUERY ###############
-df_z = readSQL('all_buildings.sql')
-
-# create new df with inner merge of buildings and see how many match
-
-merged_df = df_z.merge(df[['street_address', 'postal_code']],
-                          how = 'inner',
-                          left_on=('street_address', 'postal_code'),
-                          right_on=('street_address', 'postal_code'))
-
-merged_df = merged_df.drop_duplicates(subset = 'Id')
-
-
-print(f'Number of Z Buildings = {df_z.shape[0]}\n')
-print(f'Number of M Buildings = {df.shape[0]}\n')
-print(f'Number of Matches = {merged_df.shape[0]}\n')
-
-merged_df.to_csv('m_z_match.csv', index = False)
-
-print('Matched Buildings Saved')
