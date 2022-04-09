@@ -63,32 +63,6 @@ df.columns = ['name', 'street_address', 'city', 'state', 'postal_code', 'country
 df["needs_modified"] = [x.endswith(y) for x, y in df[["street_address","city"]].values]
 df["street_address"] = [x[:-len(y)] if x.endswith(y) else x for x, y in df[["street_address","city"]].values]
 
-## restructure address to match Z conventions
-repl_dict = {
-    r'\bStreet\b': 'St',
-    r'\bAvenue\b': 'Ave',
-    r'\bParkway\b': 'Pkwy',
-    r'\bFreeway\b': 'Fwy',
-    r'\bCircle\b': 'Cir',
-    r'\bBoulevard\b': 'Blvd',
-    r'\bCourt\b': 'Ct',
-    r'\bPlace\b': 'Pl',
-    r'\bPlaza\b': 'Plz',
-    r'\bLane\b': 'Ln',
-    r'\bRoad\b': 'Rd',
-    r'\bDrive\b': 'Dr',
-    r'\bNorth\b': 'N',
-    r'\bSouth\b': 'S',
-    r'\bEast\b': 'E',
-    r'\bWest\b': 'W',
-    r'\bNortheast\b': 'NE',
-    r'\bSoutheast\b': 'SE',
-    r'\bNorthwest\b': 'NW',
-    r'\bSouthwest\b': 'SW'
-        }
-
-df['street_address'] = df['street_address'].replace(repl_dict, regex = True)
-
 ## save m buildings to csv
 df.to_csv('file.csv', index = False)
 
