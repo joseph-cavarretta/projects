@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 """
 Created on Mon Apr  5 23:19:28 2021
-
 @author: joseph
 """
-
 import pandas as pd
 import numpy as np
 import requests
@@ -14,16 +12,10 @@ from datetime import datetime
 import calendar
 from strava_API import strava_get_activities
 
-#################### REQUEST STRAVA API TO GET ACTIVITES #######################
-
 # this function pulls all strava activities and saves them to strava_activities_raw.csv
 strava_get_activities()
 
-#################### LOAD CSV WITH UPDATED DATA ################################
-
 df = pd.read_csv('strava_activities_raw.csv')
-
-#################### CONVERT & FORMAT DATA #####################################
 
 #df['elapsed_time'] = pd.to_datetime(df['elapsed_time'], unit='s').dt.time
 #df['moving_time'] = pd.to_datetime(df['moving_time'], unit='s').dt.time
