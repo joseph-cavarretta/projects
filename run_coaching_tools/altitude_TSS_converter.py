@@ -1,7 +1,5 @@
-# -*- coding: utf-8 -*-
 """
 Created on Mon Jan 18 16:18:29 2021
-
 @author: joe.cavarretta
 """
 ########## INPUT BASELINE LT VALUES ############################################
@@ -13,7 +11,7 @@ AvgAlt = 11000
 AvgPwr = 210
 
 ########## CALCULATE CHANGE IN LT BASED ON ALTITUDE ############################
-AltConvert = ((((AvgAlt) - LivingAlt) / 500)/100)
+AltConvert = ((((AvgAlt) - LivingAlt) / 500) / 100)
 AltLTpwr = (LTpwr*(1-AltConvert))
 
 ## Convert Activity Time to Seconds
@@ -31,9 +29,9 @@ AltIFpwr = AvgPwr / AltLTpwr
 ########## CALCULATE TSS AND ALTITUDE TSS ######################################
 
 ## Absolute TSS
-TSS = ((totsecs * AvgPwr * IFpwr)/(LTpwr * 3600) * 100)
+TSS = ((totsecs * AvgPwr * IFpwr) / (LTpwr * 3600) * 100)
 print (f"Standard TSS = {round(TSS)}")
 
 ## Altitude TSS
-AltTSS = ((totsecs * AvgPwr * AltIFpwr)/(AltLTpwr * 3600) * 100)
+AltTSS = ((totsecs * AvgPwr * AltIFpwr) / (AltLTpwr * 3600) * 100)
 print (f"Altitude TSS = {round(AltTSS)}")

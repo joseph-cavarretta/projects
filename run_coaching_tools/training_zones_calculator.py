@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Sun Mar  8 19:46:33 2020
-
 @author: joe.cavarretta
 """
 ########## TRAIANING ZONES CALCULATOR ######################

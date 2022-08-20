@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 """
 Created on Mon Mar 14 21:31:22 2022
-
 @author: joseph
 """
-
 #from weather_model import isolation_model
 from datetime import datetime, timedelta
 from meteostat import Stations, Daily
@@ -38,9 +36,9 @@ station_id = station['id'][0]
 
 # get daily data
 data = Daily(
-    #boulder, 
+    #boulder,
     station_id,
-    start, 
+    start,
     end
     )
 data = data.fetch()
@@ -51,11 +49,11 @@ data.index.name = 'date'
 data.reset_index(inplace=True)
 data['date'] = data['date'].dt.strftime('%Y-%m-%d')
 
-# the data above does not reflect the same values I see in manually checking weather. 
+# the data above does not reflect the same values I see in manually checking weather.
 # there is variation in how the weather data is reported
 # however to demonstrate the process, I will use it for now.
 
-isolation_forest = joblib.load("isolation_forest.pkl") 
+isolation_forest = joblib.load("isolation_forest.pkl")
 
 test_data = np.array(data['tavg']).reshape(-1,1)
 labels = isolation_forest.predict(test_data)
@@ -66,5 +64,3 @@ data['anomaly'] = np.where(data['anomaly_score'] == -1, True, False)
 # not appending new data to original training data until new data is more reliable
 df = df.append(data)
 df.to_csv('labelled_weather_data.csv', index=False)
-
-

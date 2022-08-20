@@ -8,6 +8,7 @@ from bs4 import BeautifulSoup as soup
 from selenium import webdriver
 import os
 import pandas as pd
+import numpy as np
 
 cwd = os.getcwd()
 
@@ -55,7 +56,7 @@ df['city'] = np.where(df['country'].eq('USA'), df[2].str[:-9], df[2].str[:-11])
 df = df[[0, 1, 'city', 'state', 'postal code', 'country', 4]]
 
 ## rename columns
-df.columns = ['name', 'street_address', 'city', 'state', 'postal_code', 'country', '100g_enablement']
+df.columns = ['name', 'street_address', 'city', 'state', 'postal_code', 'country']
 
 ## some addresses have the city at the end, run code below to fix
 df["needs_modified"] = [x.endswith(y) for x, y in df[["street_address","city"]].values]

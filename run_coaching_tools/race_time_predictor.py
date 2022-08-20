@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Sun Mar  8 21:04:49 2020
-
 @author: joseph
 """
 ########## RACE TIME PREDICTOR #################################################
