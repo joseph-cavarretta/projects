@@ -10,6 +10,7 @@ METERS_TO_MILES = 0.000621371
 METERS_TO_FEET = 3.28084
 
 def main():
+     # add logger for pipeline
      data = load_data()
      process_dates(data)
      convert_units(data)
@@ -19,8 +20,6 @@ def main():
      get_strength_counts(data)
      get_climbing_counts(data)
      #save_processed_data(data)
-     print(data.columns)
-     print(data.head())
 
 def load_data(refresh=False):
      if refresh:

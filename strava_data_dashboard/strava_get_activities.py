@@ -13,6 +13,7 @@ def main():
 
 
 def get_activities():
+    print('Getting API credentials.')
     my_config_parser = configparser.ConfigParser()
     my_config_parser.read('secret/strava_API.config')
     client_id = my_config_parser.get('DEFAULT', 'client_id')
@@ -24,6 +25,7 @@ def get_activities():
     # if access_token has expired then use the refresh_token to get the new one
     if strava_tokens['expires_at'] < time.time():
         # make Strava auth API call with current refresh token
+        print('Refreshing strava tokens...')
         response = requests.post(
                         url = 'https://www.strava.com/oauth/token',
                         data = {
@@ -58,7 +60,7 @@ def get_activities():
             "total_elevation_gain"
         ]
     )
-
+    print('Getting activities from strava. This may take a few minutes.')
     while True:
         # get page of activities from Strava
         r = requests.get(url + '?access_token=' + access_token + '&per_page=200' + '&page=' + str(page))
@@ -82,7 +84,7 @@ def get_activities():
         page += 1
         
     activities.to_csv('data/strava_activities_raw.csv', index=False)
-    print ('Activity file updated!')
+    print ('Activities refreshed!')
 
 
 if __name__ == '__main__':
