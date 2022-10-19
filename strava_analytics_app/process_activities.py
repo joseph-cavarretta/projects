@@ -4,7 +4,7 @@ Created on Mon Apr 5 23:19:28 2021
 """
 import pandas as pd
 import numpy as np
-import strava_get_activities as strava
+import get_activities as strava
 
 METERS_TO_MILES = 0.000621371
 METERS_TO_FEET = 3.28084
@@ -19,7 +19,7 @@ def main():
      get_second_flatiron_counts(data)
      get_strength_counts(data)
      get_climbing_counts(data)
-     #save_processed_data(data)
+     save_processed_data(data)
 
 def load_data(refresh=False):
      if refresh:
