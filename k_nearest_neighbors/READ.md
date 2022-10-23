@@ -8,7 +8,7 @@ Initially, I used a k-nearest neighbors pairwise approach to find the distance o
 
 After some additional research, I was able to optimize my approach to run in under 1 minute using a Ball Tree algorithm.
 
-Using a US housing dataset and a list of all Starbucks locations in the US, I've recreated this problem using both approaches here: https://lnkd.in/gtwggkbm
+Using a US housing dataset and a list of all Starbucks locations in the US, I've recreated this problem using both approaches in the KNN.ipynb file.
 
 **Runtime to find the closest Starbucks to each house using brute force?** 20 minutes 24 seconds.
 
