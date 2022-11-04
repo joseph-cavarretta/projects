@@ -12,7 +12,7 @@ import joblib
 
 
 def main():
-    df = load_data_and_format('data/weather_data_historical.csv')
+    df = load_data_and_format('/src/data/weather_data_historical.csv')
     train_isolation_forest(df)
 
 
@@ -40,7 +40,7 @@ def load_data_and_format(path):
     res = stl.fit()
     df['LOESS_residuals'] = res.resid
 
-    df.to_csv('data/processed_weather_data_historical.csv', index=False)
+    df.to_csv('/src/data/processed_weather_data_historical.csv', index=False)
     return df
 
 
