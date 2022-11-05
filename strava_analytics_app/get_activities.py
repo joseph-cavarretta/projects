@@ -51,7 +51,6 @@ def refresh_tokens(strava_tokens):
     # save new tokens to file
     with open(CREDS_PATH, 'w') as outfile:
         json.dump(new_strava_tokens, outfile)
-
     return new_strava_tokens
 
 
@@ -65,7 +64,7 @@ def get_activities(strava_tokens):
     cols = ['id', 'name', 'start_date_local', 'type', 'distance', 'moving_time', 'elapsed_time', 'total_elevation_gain']
     activities = pd.DataFrame(columns=cols)
 
-    print('Getting activities from strava. This may take a few minutes.')
+    print('Getting activities from strava. This may take a minute.')
     while True:
         # get page of activities from Strava
         r = requests.get(url + '?access_token=' + access_token + '&per_page=200' + '&page=' + str(page))
@@ -83,6 +82,7 @@ def get_activities(strava_tokens):
 
     print(f'{len(activities)} activities fetched.')
     return activities
+
 
 def save_file(dataframe):
     dataframe.to_csv(OUT_PATH, index=False)
