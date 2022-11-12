@@ -1,0 +1,5 @@
+# create IBM CloudPak account: https://dataplatform.cloud.ibm.com/home2?context=cpdaas
+# create a service / project: https://dataplatform.cloud.ibm.com/projects/c5a718b2-45e9-4877-be32-f42fe6adfc91/assets?context=cpdaas
+# load a csv into a table in a data warehouse (IBM DB2)
+# connect datawarehouse to IBM Cognos Analytics
+# create dashboard from table data
