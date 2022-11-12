@@ -11,7 +11,7 @@ from pathlib import Path
 
 CONFIG_PATH = Path('secret/strava_API.config')
 CREDS_PATH = Path('secret/strava_tokens.json')
-OUT_PATH = Path('data/TEST_strava_activities_raw.csv')
+OUT_PATH = Path('data/raw_activities.csv')
 
 
 def main():
