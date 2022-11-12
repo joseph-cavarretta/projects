@@ -8,6 +8,7 @@ import get_activities as strava
 
 METERS_TO_MILES = 0.000621371
 METERS_TO_FEET = 3.28084
+REFRESH = False
 
 def main():
      # add logger for pipeline
@@ -21,7 +22,7 @@ def main():
      get_climbing_counts(data)
      save_processed_data(data)
 
-def load_data(refresh=False):
+def load_data(refresh=REFRESH):
      if refresh:
           # refreshes all strava activities via API and saves them to strava_activities_raw.csv
           print("Refreshing activity data...")
