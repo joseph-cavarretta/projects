@@ -9,8 +9,8 @@ import time
 import configparser
 from pathlib import Path
 
-CONFIG_PATH = Path('secret/strava_API.config')
-CREDS_PATH = Path('secret/strava_tokens.json')
+CONFIG_PATH = Path('config/strava_API.config')
+CREDS_PATH = Path('config/strava_tokens.json')
 OUT_PATH = Path('data/raw_activities.csv')
 
 

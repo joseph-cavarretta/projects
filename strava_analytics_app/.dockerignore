@@ -7,3 +7,4 @@ dockerfile
 .ipynb
 */secret/
 *.csv
+*/config/

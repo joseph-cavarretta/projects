@@ -1,6 +1,6 @@
 -- to run: mysql -u root -p -e "source create_database.sql"
 
-DROP DATABASE `strava_staging`;
+DROP DATABASE IF EXISTS `strava_staging`;
 
 CREATE DATABASE IF NOT EXISTS `strava_staging`;
 USE `strava_staging`;
