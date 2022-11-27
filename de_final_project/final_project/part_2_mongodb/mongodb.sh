@@ -17,7 +17,7 @@ mongoimport --version
 wget https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBM-DB0321EN-SkillsNetwork/nosql/catalog.json
 
 # import data from json file to mongo db
-mongoimport -u root -p MjEzNzMtam9zZXBo --authenticationDatabase admin --db catalog --collection electronics --file catalog.json
+mongoimport -u root -p "" --authenticationDatabase admin --db catalog --collection electronics --file catalog.json
 
 # run the following commands in mongo shell
 
@@ -37,5 +37,5 @@ db.electronics.aggregate([{$match: {"type":"smart phone"}}, {$group: {_id: "scre
 # run in terminal, not mongo shell
 
 # export specific fields from database 
-mongoexport -u root -p MjEzNzMtam9zZXBo --authenticationDatabase admin \
+mongoexport -u root -p "" --authenticationDatabase admin \
 --db catalog --collection electronics --out electronics.csv --type=csv --fields _id,type,model

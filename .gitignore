@@ -6,3 +6,7 @@ venv
 __pycache__
 .ipynb_checkpoints
 .gitignore
+.config
+*/config/*
+*/config
+*/electrocardiograms/data/*

@@ -8,7 +8,7 @@ import ibm_db
 
 dsn_hostname = "2f3279a5-73d1-4859-88f0-a6c3e6b4b907.c3n41cmd0nqnrk39u98g.databases.appdomain.cloud" # e.g.: "dashdb-txn-sbox-yp-dal09-04.services.dal.bluemix.net"
 dsn_uid = "ytn38386"        # e.g. "abc12345"
-dsn_pwd = "uU6IYdF8Oa7T0400"      # e.g. "7dBZ3wWt9XN6$o0J"
+dsn_pwd = ""      # e.g. "7dBZ3wWt9XN6$o0J"
 dsn_port = "30756"                # e.g. "50000" 
 dsn_database = "bludb"            # i.e. "BLUDB"
 dsn_driver = "jdbc:db2://2f3279a5-73d1-4859-88f0-a6c3e6b4b907.c3n41cmd0nqnrk39u98g.databases.appdomain.cloud:30756/bludb:user=ytn38386;password=uU6IYdF8Oa7T0400;sslConnection=true;" # i.e. "{IBM DB2 ODBC DRIVER}"           

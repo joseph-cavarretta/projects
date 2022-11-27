@@ -4,7 +4,7 @@
 start_mysql
 
 # connect to mysql CLI
-mysql --host=127.0.0.1 --port=3306 --user=root --password=Nzk1MS1qb3NlcGht
+mysql --host=127.0.0.1 --port=3306 --user=root --password=""
 
 # run commands in mysql CLI to create database and create table
 create database sales;

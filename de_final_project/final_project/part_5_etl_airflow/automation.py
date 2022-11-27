@@ -4,7 +4,7 @@ import ibm_db
 # Connect to MySQL
 mysql_connection = mysql.connector.connect(
     user='root', 
-    password='MjE0Mjgtam9zZXBo',
+    password='',
     host='127.0.0.1',
     database='sales'
 )
@@ -13,7 +13,7 @@ mysql_cursor = mysql_connection.cursor()
 # Connect to DB2
 dsn_hostname = "2f3279a5-73d1-4859-88f0-a6c3e6b4b907.c3n41cmd0nqnrk39u98g.databases.appdomain.cloud"
 dsn_uid = "ytn38386"
-dsn_pwd = "uU6IYdF8Oa7T0400"
+dsn_pwd = ""
 dsn_port = "30756"
 dsn_database = "bludb"
 dsn_driver = "jdbc:db2://2f3279a5-73d1-4859-88f0-a6c3e6b4b907.c3n41cmd0nqnrk39u98g.databases.appdomain.cloud:30756/bludb:user=ytn38386;password=uU6IYdF8Oa7T0400;sslConnection=true;"

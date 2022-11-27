@@ -1,10 +1,10 @@
 #!/bin/bash
 
-cd \
-cd "\Program Files\MySQL\MySQL Server 8.0"
-
-# make sure server is running
-\bin\mysqld --console
+# start service
+net start mysql;
 
 # connect
-mysql -u root -p
+mysql -u root -p;
+
+# stop service
+new stop mysql;
