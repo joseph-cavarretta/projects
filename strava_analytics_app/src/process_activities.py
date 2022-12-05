@@ -27,7 +27,7 @@ def load_data(refresh=REFRESH):
           # refreshes all strava activities via API and saves them to strava_activities_raw.csv
           print("Refreshing activity data...")
           strava.get_activities() 
-     df = pd.read_csv('data/strava_activities_raw.csv')
+     df = pd.read_csv('data/raw_activities.csv')
      return df
 
 
@@ -36,7 +36,7 @@ def process_dates(dataframe):
      df['start_date_local'] = pd.to_datetime(df['start_date_local'])
      df['day_of_month'] = df['start_date_local'].dt.day
      df['day_of_year'] = df['start_date_local'].dt.dayofyear
-     df['week'] = df['start_date_local'].dt.isocalendar().week
+     df['week'] = df['start_date_local'].dt.strftime('%W') # gives week with Monday as first day of week
      df['month'] = df['start_date_local'].dt.month_name()
      df['year'] = df['start_date_local'].dt.year
      #change start date to only show date
@@ -45,11 +45,20 @@ def process_dates(dataframe):
 
 def convert_units(dataframe):
      df = dataframe
-     #convert distance to miles
+     # convert distance to miles
      df['distance'] = (df['distance'] * METERS_TO_MILES).astype(float).round(2)
      df.rename(columns={'distance': 'miles'}, inplace=True)
-     #convert elevation gain to feet
+     # convert elevation gain to feet
      df['total_elevation_gain'] = (df['total_elevation_gain'] * METERS_TO_FEET).astype(float).round(2)
+     # convert elapsed time (seconds) to hours
+     df['hours'] = (df['elapsed_time'] / 60 / 60).round(2)
+
+
+def get_session_rpe(dataframe):
+     # perceived exertion not currently implemented in api
+     # df = dataframe
+     # df['session_load'] == (df['perceived_exertion'] * df['elapsed_time']) / 60
+     pass
 
 
 def get_bear_peak_counts(dataframe):

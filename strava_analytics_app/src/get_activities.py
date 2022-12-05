@@ -61,7 +61,10 @@ def get_activities(strava_tokens):
     access_token = strava_tokens['access_token']
 
     # create the dataframe ready for the API call to store your activity data
-    cols = ['id', 'name', 'start_date_local', 'type', 'distance', 'moving_time', 'elapsed_time', 'total_elevation_gain']
+    cols = [
+        'id', 'name', 'start_date_local', 'type', 'distance', 
+        'moving_time', 'elapsed_time', 'total_elevation_gain'
+    ]
     activities = pd.DataFrame(columns=cols)
 
     print('Getting activities from strava. This may take a minute.')
