@@ -51,8 +51,8 @@ scatter = px.scatter(df.groupby(['day_of_month', 'month']).agg({'total_elevation
 
 
 app.layout = html.Div(children=[
-    html.H1(children='Mountain Metrics'),
-    html.Div(children='Data Dashboard'),
+    html.H1(children='Mountain Stats'),
+    html.Div(children=''),
     dcc.Graph(
         id='example-graph',
         figure=time_x_week_bar
