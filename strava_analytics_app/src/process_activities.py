@@ -39,19 +39,19 @@ def process_dates(dataframe):
      df['week'] = df['start_date_local'].dt.strftime('%W') # gives week with Monday as first day of week
      df['month'] = df['start_date_local'].dt.month_name()
      df['year'] = df['start_date_local'].dt.year
-     #change start date to only show date
-     df['start_date_local'] = pd.to_datetime(df['start_date_local']).dt.date
+     df['date'] = df['start_date_local'].dt.date
+     df['year_week'] = df['year'].astype(str) + '-' + df['week'].astype(str).str.zfill(2)
 
 
 def convert_units(dataframe):
      df = dataframe
      # convert distance to miles
      df['distance'] = (df['distance'] * METERS_TO_MILES).astype(float).round(2)
-     df.rename(columns={'distance': 'miles'}, inplace=True)
      # convert elevation gain to feet
      df['total_elevation_gain'] = (df['total_elevation_gain'] * METERS_TO_FEET).astype(float).round(2)
      # convert elapsed time (seconds) to hours
      df['hours'] = (df['elapsed_time'] / 60 / 60).round(2)
+     df.rename(columns={'distance': 'miles', 'total_elevation_gain': 'elevation_gain'}, inplace=True)
 
 
 def get_session_rpe(dataframe):
