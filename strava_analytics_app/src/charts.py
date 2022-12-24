@@ -12,18 +12,25 @@ STRENGTH = ['WeightTraining', 'RockClimbing']
 MONTHS = {
         "month": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     }
+FONT = 'Open Sans,Light 300'
+TITLE_FONT = 'Open Sans, Medium 500'
 TABLE_HEADER_PROPS = {
-    'fill_color': 'LightSalmon',
+    'fill_color': '#FF8303',
     'align': 'left',
-    'line_color': 'darkslategray',
-    'font': dict(color='black', size=13, family='Arial Black')
+    'line_color': 'white',
+    'font': dict(color='white', size=13, family=TITLE_FONT)
 }
 TABLE_PROPS = {
-    'fill_color': 'Azure',
+    'fill_color': '#FEDEBE',
     'align': 'left',
-    'line_color': 'darkslategray',
+    'line_color': 'white',
     'height': 28,
-    'font': dict(color='black', size=11, family='Arial')
+    'font': dict(color='black', size=11, family=FONT)
+}
+BAR_PROPS = {
+    'bg_color': '#FEDEBE',
+    'bar_color': '#FF8303',
+    'font': FONT
 }
 
 
@@ -77,11 +84,11 @@ def stacked_bar_by_month(dataframe, y=None, title=None, color=None):
 def table(dataframe, cols=[], title=None):
     df = dataframe
     df = df.loc[:, cols]
-    df['name'] = df['name'].str.slice(0,40) + '...'
+    df.loc[df.name.str.len() > 38, 'name'] = df.loc[df.name.str.len() > 38, 'name'].str.slice(0,35) + '...'
     table = go.Figure(
         data=[
             go.Table(
-                columnwidth = [50, 10, 20, 20],
+                columnwidth = [45, 10, 15, 20],
                 header=dict(
                     values=list(df.columns),
                     fill_color=TABLE_HEADER_PROPS['fill_color'],
@@ -99,8 +106,9 @@ def table(dataframe, cols=[], title=None):
                     height=TABLE_PROPS['height']
                 ))])
     table.update_layout(
-        margin = dict(l=10, r=10, t=30, b=4),
-        title = title
+        margin = dict(l=10, r=10, t=30, b=2),
+        title = dict(text=title, y=0.99, x=0.025),
+        title_font_family=TITLE_FONT
     )
     return table
 
@@ -111,6 +119,14 @@ def bar_chart_by_week(dataframe, x=None, y=None, title=None):
         df, 
         x=x,
         y=y,
-        title=title
+        title=title,
+        color_discrete_sequence=[BAR_PROPS['bar_color']] * len(df)
+    )
+    barchart.update_layout(
+        margin=dict(l=15, r=15, t=30, b=2),
+        plot_bgcolor=BAR_PROPS['bg_color'],
+        font_family=BAR_PROPS['font'],
+        title_font_family=TITLE_FONT,
+        xaxis_title=''
     )
     return barchart
