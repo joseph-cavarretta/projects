@@ -51,7 +51,7 @@ def convert_units(dataframe):
      df['total_elevation_gain'] = (df['total_elevation_gain'] * METERS_TO_FEET).astype(float).round()
      # convert elapsed time (seconds) to hours
      df['hours'] = (df['elapsed_time'] / 60 / 60).round(2)
-     df.rename(columns={'distance': 'miles', 'total_elevation_gain': 'elevation_gain'}, inplace=True)
+     df.rename(columns={'distance': 'miles', 'total_elevation_gain': 'elevation'}, inplace=True)
 
 
 def get_session_rpe(dataframe):

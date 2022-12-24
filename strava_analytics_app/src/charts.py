@@ -3,6 +3,7 @@ Created on Dec 7, 2022 19:11:23
 Created by Joe Cavarretta
 """
 import pandas as pd
+from functools import reduce
 import plotly.express as px
 import plotly.graph_objects as go
 
@@ -12,7 +13,7 @@ STRENGTH = ['WeightTraining', 'RockClimbing']
 MONTHS = {
         "month": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     }
-FONT = 'Open Sans,Light 300'
+FONT = 'Open Sans, Light 300'
 TITLE_FONT = 'Open Sans, Medium 500'
 TABLE_HEADER_PROPS = {
     'fill_color': '#FF8303',
@@ -24,19 +25,20 @@ TABLE_PROPS = {
     'fill_color': '#FEDEBE',
     'align': 'left',
     'line_color': 'white',
-    'height': 28,
+    'height': 30,
     'font': dict(color='black', size=11, family=FONT)
 }
 BAR_PROPS = {
     'bg_color': '#FEDEBE',
     'bar_color': '#FF8303',
-    'font': FONT
+    'font': FONT,
+    'height': 400
 }
 
 
 def max_elevation_scatter_plot(dataframe):
-    plot_cols = ['month', 'day_of_month', 'year', 'name', 'type', 'hours', 'total_elevation_gain']
-    sort_cols = ['day_of_month', 'month', 'total_elevation_gain']
+    plot_cols = ['month', 'day_of_month', 'year', 'name', 'type', 'hours', 'elevation']
+    sort_cols = ['day_of_month', 'month', 'elevation']
     dups_cols = ['day_of_month', 'month']
     plot_data = dataframe.loc[~dataframe['type'].isin(NON_AEROBIC)]
     
@@ -44,9 +46,9 @@ def max_elevation_scatter_plot(dataframe):
         plot_data.sort_values(by=sort_cols, ascending=False).drop_duplicates(subset=dups_cols)[plot_cols], 
         x='month', 
         y='day_of_month', 
-        color='total_elevation_gain', 
+        color='elevation', 
         size='hours',
-        custom_data=['year', 'name', 'total_elevation_gain', 'type'],
+        custom_data=['year', 'name', 'elevation', 'type'],
         category_orders=MONTHS
     )
     scatter.update_traces(
@@ -123,10 +125,69 @@ def bar_chart_by_week(dataframe, x=None, y=None, title=None):
         color_discrete_sequence=[BAR_PROPS['bar_color']] * len(df)
     )
     barchart.update_layout(
-        margin=dict(l=15, r=15, t=30, b=2),
+        margin=dict(l=15, r=10, t=35, b=2),
         plot_bgcolor=BAR_PROPS['bg_color'],
         font_family=BAR_PROPS['font'],
         title_font_family=TITLE_FONT,
-        xaxis_title=''
+        xaxis_title='',
+        yaxis_title='',
+        height=BAR_PROPS['height']
+    )
+    barchart.update_yaxes(
+        ticksuffix=' ',
+        tickfont=dict(size=11)
+    )
+    barchart.update_xaxes(
+        tickprefix=' ',
+        tickfont=dict(size=11)
+    )
+    return barchart
+
+
+def local_peaks_bar(dataframe):
+    df = dataframe
+    dfs = [
+        df.groupby('year').agg({'bear_peak_count':'sum'}).reset_index(),
+        df.groupby('year').agg({'sanitas_count':'sum'}).reset_index(),
+        df.groupby('year').agg({'second_flatiron_count':'sum'}).reset_index()
+    ]
+    df_merged = reduce(lambda  left,right: pd.merge(left,right, on=['year'], how='left'), dfs)
+    barchart = px.bar(
+        data_frame = df_merged.loc[df_merged.year != 2015],
+        x = 'year',
+        y = ['bear_peak_count','sanitas_count','second_flatiron_count'],
+        color_discrete_map=dict(bear_peak_count='#FD5602', sanitas_count='#FF8303', second_flatiron_count='#FFAF42'),
+        orientation = "v",
+        barmode = 'group',
+        title='Most Common Routes by Year'
+    )
+    barchart.update_layout(
+        margin=dict(l=15, r=10, t=35, b=2),
+        plot_bgcolor=BAR_PROPS['bg_color'],
+        font_family=BAR_PROPS['font'],
+        title_font_family=TITLE_FONT,
+        xaxis_title='',
+        yaxis_title='',
+        legend_title='',
+        height=BAR_PROPS['height'],
+        legend=dict(
+            #orientation='h',
+            yanchor='top',
+            y=0.93,
+            xanchor='right',
+            x=0.93,
+            itemwidth=50,
+            grouptitlefont=dict(
+                family="Open Sans, Light 300",
+                size=11,
+                color="black"
+            ),
+            bgcolor=BAR_PROPS['bg_color'],
+            bordercolor=BAR_PROPS['bg_color']
+        )  
+    )
+    barchart.update_yaxes(
+        ticksuffix=' ',
+        tickfont=dict(size=11)
     )
     return barchart
