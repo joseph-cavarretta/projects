@@ -91,6 +91,5 @@ def save_file(dataframe):
     dataframe.to_csv(OUT_PATH, index=False)
     print ('Activities refreshed!')
 
-
 if __name__ == '__main__':
     main()

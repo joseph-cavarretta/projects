@@ -2,6 +2,7 @@
 Created on Mon Apr 5 23:19:28 2021
 @author: joseph.cavarretta
 """
+import sys
 import pandas as pd
 import numpy as np
 import get_activities as strava
@@ -9,6 +10,11 @@ import get_activities as strava
 METERS_TO_MILES = 0.000621371
 METERS_TO_FEET = 3.28084
 REFRESH = False
+# if 'refresh' passed from CLI, call API to refresh activities before processing
+if len(sys.argv) > 1:
+     if sys.argv[1].lower() == 'refresh':
+          REFRESH = True
+     
 
 def main():
      # add logger for pipeline
@@ -26,7 +32,7 @@ def load_data(refresh=REFRESH):
      if refresh:
           # refreshes all strava activities via API and saves them to strava_activities_raw.csv
           print("Refreshing activity data...")
-          strava.get_activities() 
+          strava.main()
      df = pd.read_csv('data/raw_activities.csv')
      return df
 

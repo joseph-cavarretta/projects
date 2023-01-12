@@ -1,38 +1,25 @@
 # visit http://127.0.0.1:8050/ in your web browser.
 
+"""
+SUMMARY PAGE
+"""
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 import plotly.express as px
 import pandas as pd
 import charts as charts
+import navigation
 
+BACKGROUND_COLOR = '#282C34'
 
-app = Dash(__name__)
+app = Dash(__name__, external_stylesheets=[dbc.themes.CERULEAN])
+
 df = pd.read_csv('data/processed_activities.csv')
 
-navbar = dbc.NavbarSimple(
-    children=[
-        dbc.NavItem(dbc.NavLink("Page 1", href="#")),
-        dbc.DropdownMenu(
-            children=[
-                dbc.DropdownMenuItem("More pages", header=True),
-                dbc.DropdownMenuItem("Page 2", href="#"),
-                dbc.DropdownMenuItem("Page 3", href="#"),
-            ],
-            nav=True,
-            in_navbar=True,
-            label="More",
-        ),
-    ],
-    brand="NavbarSimple",
-    brand_href="#",
-    color="primary",
-    dark=True,
-)
-
 app.layout = html.Div(children=[
-    html.H1('Mountain Stats', id='header', style={'font-family': 'Arial'}),
-    html.Div(navbar),
+    html.H1('Mountain Stats', id='header', style={'font-family': 'Arial', 'line-height': '50%', 'background-color': BACKGROUND_COLOR}),
+    navigation.navbar,
+    #html.H3('Overall Activity Summary', id='header3', style={'font-family': 'Arial', 'line-height': '50%', 'margin-bottom': '3%'}),
     html.Div(children=[
         dcc.Graph(
             id="table1", 

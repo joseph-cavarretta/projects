@@ -15,6 +15,14 @@ MONTHS = {
     }
 FONT = 'Open Sans, Light 300'
 TITLE_FONT = 'Open Sans, Medium 500'
+COLORS = {
+    'background': '#FEDEBE',
+    'yellow': '#FFAF42',
+    'light orange': '#FF8303',
+    'orange': '#FE6E00',
+    'dark orange': '#FD5602',
+    'red': '#DF2400'
+}
 TABLE_HEADER_PROPS = {
     'fill_color': '#FF8303',
     'align': 'left',
@@ -35,6 +43,15 @@ BAR_PROPS = {
     'height': 400
 }
 
+
+def create_indicator(dataframe, agg, column):
+    tile = go.Figure()
+    tile.add_trace(go.Indicator(
+        mode = "number",
+        value = 300,
+        domain = {'row': 0, 'column': 1}
+        )
+    )
 
 def max_elevation_scatter_plot(dataframe):
     plot_cols = ['month', 'day_of_month', 'year', 'name', 'type', 'hours', 'elevation']
@@ -109,8 +126,9 @@ def table(dataframe, cols=[], title=None):
                 ))])
     table.update_layout(
         margin = dict(l=10, r=10, t=30, b=2),
-        title = dict(text=title, y=0.99, x=0.025),
-        title_font_family=TITLE_FONT
+        title = dict(text=title, y=0.99, x=0.025, font=dict(color='white')),
+        title_font_family=TITLE_FONT,
+        paper_bgcolor = '#282C34'
     )
     return table
 
@@ -125,7 +143,7 @@ def bar_chart_by_week(dataframe, x=None, y=None, title=None):
         color_discrete_sequence=[BAR_PROPS['bar_color']] * len(df)
     )
     barchart.update_layout(
-        margin=dict(l=15, r=10, t=35, b=2),
+        margin=dict(l=20, r=10, t=35, b=2),
         plot_bgcolor=BAR_PROPS['bg_color'],
         font_family=BAR_PROPS['font'],
         title_font_family=TITLE_FONT,
@@ -178,9 +196,9 @@ def local_peaks_bar(dataframe):
             x=0.93,
             itemwidth=50,
             grouptitlefont=dict(
-                family="Open Sans, Light 300",
+                family='Open Sans, Light 300',
                 size=11,
-                color="black"
+                color='black'
             ),
             bgcolor=BAR_PROPS['bg_color'],
             bordercolor=BAR_PROPS['bg_color']
@@ -188,6 +206,43 @@ def local_peaks_bar(dataframe):
     )
     barchart.update_yaxes(
         ticksuffix=' ',
-        tickfont=dict(size=11)
+        tickfont=dict(size=11, family='Open Sans, Light 300')
     )
     return barchart
+
+
+def scatter_max(dataframe):
+    df = dataframe
+    scatter = px.scatter(df.loc[~df['type'].isin(NON_AEROBIC)].sort_values(by=['day_of_month', 'month', 'elevation'], ascending=False).drop_duplicates(subset=['day_of_month', 'month'])[['month', 'day_of_month', 'year', 'name', 'type', 'hours', 'elevation']], 
+                 x='month', 
+                 y='day_of_month', 
+                 color='elevation', 
+                 size='hours',
+                 title='Longest Activities by Day',
+                 custom_data=['year', 'name', 'elevation', 'type', 'hours'],
+                 color_continuous_scale=[[0, '#FFAF42'], [0.3, '#FF8303'], [0.5, '#FE6E00'], [0.7, '#FD5602'], [1, '#DF2400']],
+                 category_orders={"month": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]}
+                 )
+    scatter.update_traces(
+        hovertemplate="<br>".join([
+            "Name: %{customdata[1]}",
+            "Type: %{customdata[3]}",
+            "Date: %{x} %{y}, %{customdata[0]}",
+            "Hours: %{customdata[4]}",
+            "Elevation: %{customdata[2]}"
+        ])
+    )
+    scatter.update_layout(
+        margin=dict(l=15, r=10, t=35, b=2),
+        plot_bgcolor=BAR_PROPS['bg_color'],
+        height=430,
+        xaxis_title='',
+        yaxis_title='Day of Month',
+    )
+    scatter.update_yaxes(
+        ticksuffix=' ',
+        tickfont=dict(size=11, family='Open Sans, Light 300'),
+        title_font=dict(size=11, family='Open Sans, Light 300')
+    )
+    
+    return scatter
