@@ -19,6 +19,7 @@ def main():
     new_data = get_new_data(start, end)
     labelled_data = label_new_data(new_data)
     write_file(df, labelled_data)
+    print_confirmation(df, labelled_data, start)
 
 
 def read_data():
@@ -78,10 +79,19 @@ def write_file(dataframe, labelled_data):
     df = dataframe
     df = pd.concat([df, labelled_data], ignore_index=True)
     df.to_csv(FILE_PATH, index=False)
+
+
+def print_confirmation(dataframe, labelled_data, start_date):
+    df = dataframe
+    start_date = start_date.strftime('%Y-%m-%d')
+    df = pd.concat([df, labelled_data], ignore_index=True)
     total_anomalies = len(df.loc[df['anomaly'] == True])
-    print("Weather file updated.")
-    print(f"Open {FILE_PATH} to check anomalies")
+    df['date'] = pd.to_datetime(df['date'])
+    recent_anomalies = len(df.loc[(df['date'] > start_date) & (df['anomaly'] == True)])
+    #print("Weather file updated.")
     print(f'There are {total_anomalies} days with anomalous weather logged')
+    print(f'New anomalies since {start_date}: {recent_anomalies}')
+    #print(f"Open {FILE_PATH} to check anomalies")
 
 
 if __name__ == '__main__':

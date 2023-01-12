@@ -6,4 +6,4 @@ COPY . .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["python3", "src/weather_model.py"]
+CMD ["python", "src/weather_model.py"]

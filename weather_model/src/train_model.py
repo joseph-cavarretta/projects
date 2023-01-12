@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
 """
 Created on Fri Apr  8 17:27:05 2022
 @author: josep
 """
-
 import pandas as pd
 import numpy as np
 from statsmodels.tsa.seasonal import STL
@@ -13,13 +11,15 @@ import joblib
 
 def main():
     df = load_data_and_format('/src/data/weather_data_historical.csv')
+    print('Training isolation forest model...')
     train_isolation_forest(df)
+    print('Model training complete.')
 
 
 def load_data_and_format(path):
     """Reads original weather data csv and returns processed dataframe.
     Args:
-        path - the path to the original weather data csv
+        path: the path to the original weather data csv
     """
     raw_df = pd.read_csv(path)
     # change dt_iso to datetime
@@ -61,4 +61,5 @@ def train_isolation_forest(df):
     return
 
 
-main()
+if __name__ == '__main__':
+    main()
