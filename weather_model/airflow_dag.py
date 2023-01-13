@@ -1,6 +1,6 @@
 from datetime import timedelta, datetime
 from airflow import DAG
-from airflow.operators.bash import BashOperator
+# docker operator performs equivalent of a run command
 from airflow.providers.docker.operators.docker import DockerOperator
 
 args = {
@@ -18,13 +18,19 @@ with DAG(
     dag_id='weather_model',
     default_args=args,
     description='Runs anomaly detection model on Boulder, CO recent weather',
-    schedule_interval='15 * * * *'
+    schedule_interval='5 * * * *'
     #schedule_interval='0 12 * * 0' # run on mondays at noon
 ) as dag:
 
     # run model on last 7 days of data
-    run_model = BashOperator(
-        task_id='run_model',
-        bash_command='docker run --rm --volume ~/*/weather_model/src/data:/data weather_model',
-        dag=dag,
+    run_model = DockerOperator(
+        task_id='run_model_container',
+        image='weather_model:latest',
+        api_version='auto',
+        auto_remove=True,
+        command="docker run --rm --volume ~/*/weather_model/src/data:/data weather_model",
+        docker_url="unix://var/run/docker.sock",
+        network_mode="bridge"
     )
+
+run_model
