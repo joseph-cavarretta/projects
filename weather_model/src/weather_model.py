@@ -9,8 +9,10 @@ import numpy as np
 import joblib
 from pathlib import Path
 
-FILE_PATH = Path('src/data/labelled_weather_data.csv')
+DS = datetime.now().strftime("%Y-%m-%d")
 MODEL_PATH = Path('src/isolation_forest.pkl')
+FILE_PATH = Path('/data/labelled_weather_data.csv')
+OUT_PATH = Path(f'/output/labelled_data_{DS}.csv')
 
 
 def main():
@@ -78,7 +80,7 @@ def label_new_data(dataframe):
 def write_file(dataframe, labelled_data):
     df = dataframe
     df = pd.concat([df, labelled_data], ignore_index=True)
-    df.to_csv(FILE_PATH, index=False)
+    df.to_csv(OUT_PATH, index=False)
 
 
 def print_confirmation(dataframe, labelled_data, start_date):

@@ -1,6 +1,6 @@
 """
 Created on Fri Apr  8 17:27:05 2022
-@author: josep
+@author: joseph.cavarretta
 """
 import pandas as pd
 import numpy as np
