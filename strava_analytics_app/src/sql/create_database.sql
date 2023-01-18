@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `strava_staging`.`processed_data` (
     `miles` FLOAT(6,2),
     `moving_time` INT,
     `elapsed_time` INT,
-    `total_elevation_gain` FLOAT(10,2),
+    `elevation` FLOAT(10,2),
     `day_of_month` INT,
     `day_of_year` INT,
     `week` INT,

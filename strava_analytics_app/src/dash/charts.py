@@ -7,7 +7,7 @@ from functools import reduce
 import plotly.express as px
 import plotly.graph_objects as go
 
-DATA = pd.read_csv('data/processed_activities.csv')
+# DATA = pd.read_csv('/data/processed_activities.csv')
 NON_AEROBIC = ['AlpineSki', 'WeightTraining', 'Workout', 'RockClimbing']
 STRENGTH = ['WeightTraining', 'RockClimbing']
 MONTHS = {
