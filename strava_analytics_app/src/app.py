@@ -10,29 +10,29 @@ import charts as charts
 app = Dash(__name__)
 df = pd.read_csv('data/processed_activities.csv')
 
-navbar = dbc.NavbarSimple(
-    children=[
-        dbc.NavItem(dbc.NavLink("Page 1", href="#")),
-        dbc.DropdownMenu(
-            children=[
-                dbc.DropdownMenuItem("More pages", header=True),
-                dbc.DropdownMenuItem("Page 2", href="#"),
-                dbc.DropdownMenuItem("Page 3", href="#"),
-            ],
-            nav=True,
-            in_navbar=True,
-            label="More",
-        ),
-    ],
-    brand="NavbarSimple",
-    brand_href="#",
-    color="primary",
-    dark=True,
-)
+# navbar = dbc.NavbarSimple(
+#     children=[
+#         dbc.NavItem(dbc.NavLink("Page 1", href="#")),
+#         dbc.DropdownMenu(
+#             children=[
+#                 dbc.DropdownMenuItem("More pages", header=True),
+#                 dbc.DropdownMenuItem("Page 2", href="#"),
+#                 dbc.DropdownMenuItem("Page 3", href="#"),
+#             ],
+#             nav=True,
+#             in_navbar=True,
+#             label="More",
+#         ),
+#     ],
+#     brand="NavbarSimple",
+#     brand_href="#",
+#     color="primary",
+#     dark=True,
+# )
 
 app.layout = html.Div(children=[
     html.H1('Mountain Stats', id='header', style={'font-family': 'Arial'}),
-    html.Div(navbar),
+    # html.Div(navbar),
     html.Div(children=[
         dcc.Graph(
             id="table1", 
@@ -145,17 +145,6 @@ app.layout = html.Div(children=[
     ]),
 ])
 
-"""
-To add:
-- page
-    - recent activity and fitness / fatigue
-        - last 30 days of activity? Duration and type?
-- page
-    - summary overall stats and records
-    - trending graph against other years (elevation line chart)
-- page
-    - run / ride / strength specific breakdowns
-"""
 
 if __name__ == '__main__':
     app.run_server(debug=True)

@@ -126,9 +126,8 @@ def table(dataframe, cols=[], title=None):
                 ))])
     table.update_layout(
         margin = dict(l=10, r=10, t=30, b=2),
-        title = dict(text=title, y=0.99, x=0.025, font=dict(color='white')),
-        title_font_family=TITLE_FONT,
-        paper_bgcolor = '#282C34'
+        title = dict(text=title, y=0.99, x=0.025, font=dict(color='black')),
+        title_font_family=TITLE_FONT
     )
     return table
 
