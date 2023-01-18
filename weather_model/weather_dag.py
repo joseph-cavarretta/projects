@@ -18,7 +18,6 @@ with DAG(
     dag_id='weather_model',
     default_args=args,
     description='Runs anomaly detection model on Boulder, CO recent weather',
-    #s chedule_interval='5 * * * *'
     schedule_interval='0 12 * * 0' # run on mondays at noon
 ) as dag:
     run_model = BashOperator(
@@ -27,7 +26,7 @@ with DAG(
     )
     upload_to_gcs = BashOperator(
         task_id='upload_to_gcs',
-        bash_command='python3 /home/yosyp/projects/weather_model/upload_to_gcs.py',
+        bash_command='python3 /home/yosyp/projects/weather_model/scripts/upload_to_gcs.py',
     )
 
 run_model >> upload_to_gcs

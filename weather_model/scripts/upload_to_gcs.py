@@ -9,7 +9,7 @@ from google.cloud import storage
 DS = datetime.now().strftime("%Y-%m-%d")
 BUCKET_PATH = f'gs://joe-test-bucket-373803/data/labelled_data_{DS}.csv'
 FILEPATH = f'/home/yosyp/projects/weather_model/src/data/scheduled_runs/labelled_data_{DS}.csv'
-GCP_CREDS_PATH = '/home/yosyp/documents/gcp_creds.json'
+GCP_CREDS_PATH = '/home/yosyp/config/gcp_creds.json'
 os.environ['GOOGLE_APPLICATION_CREDNETIALS'] = GCP_CREDS_PATH
 
 def upload_to_gcs_bucket():
