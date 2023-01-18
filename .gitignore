@@ -7,7 +7,7 @@ __pycache__
 .ipynb_checkpoints
 .gitignore
 .config
-/config
+*/strava_analytics_app/src/config/*
 */config/*
-*/config
+*/config*
 */electrocardiograms/data/*
