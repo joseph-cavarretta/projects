@@ -25,15 +25,9 @@ with DAG(
         task_id='run_model',
         bash_command='docker run --rm --volume ~/projects/weather_model/src/data:/data weather_model',
     )
-    # run model on last 7 days of data
-    # run_model = DockerOperator(
-    #     task_id='run_model',
-    #     image='weather_model:latest',
-    #     api_version='auto',
-    #     auto_remove=True,
-    #     command="docker run --rm --volume ~/*/weather_model/src/data:/data weather_model",
-    #     docker_url="unix://var/run/docker.sock",
-    #     network_mode="bridge"
-    # )
+    upload_to_gcs = BashOperator(
+        task_id='upload_to_gcs',
+        bash_command='python3 /home/yosyp/projects/weather_model/upload_to_gcs.py',
+    )
 
-run_model
+run_model >> upload_to_gcs

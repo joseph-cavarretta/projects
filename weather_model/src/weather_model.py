@@ -13,6 +13,7 @@ DS = datetime.now().strftime("%Y-%m-%d")
 MODEL_PATH = Path('src/isolation_forest.pkl')
 FILE_PATH = Path('/data/labelled_weather_data.csv')
 OUT_PATH = Path(f'/output/labelled_data_{DS}.csv')
+BUCKET_PATH = f'gs://joe-test-bucket-373803/data/labelled_data_{DS}.csv'
 
 
 def main():
