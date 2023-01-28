@@ -68,7 +68,7 @@ class overallReport:
         print(f"Total Activities: {len(self.data):,}")
         print(f"Total Activity Duration: {round(sum(self.data.elapsed_time)/60/60):,} hours")
         print(f"Total Activity Distance: {round(sum(self.data.miles)):,} miles")
-        print(f"Total Elevation Gain: {round(sum(self.data.total_elevation_gain)):,} feet")
+        print(f"Total Elevation Gain: {round(sum(self.data.elevation)):,} feet")
         
         print ("\n" + ("*"*27) + " Boulder Stats " + ("*"*27) + "\n")
         
@@ -81,14 +81,14 @@ class overallReport:
         print(f"Total Run Activities: {len(self.run_data):,}")
         print(f"Total Run Duration: {round(sum(self.run_data.elapsed_time)/60/60):,} hours")
         print(f"Total Run Distance: {round(sum(self.run_data.miles)):,} miles")
-        print(f"Total Run Elevation Gain: {round(sum(self.run_data.total_elevation_gain)):,} feet")
+        print(f"Total Run Elevation Gain: {round(sum(self.run_data.elevation)):,} feet")
 
         print ("\n" + ("*"*29) + " Bike Stats " + ("*"*29) + "\n")
 
         print(f"Total Bike Activities: {len(self.bike_data):,}")
         print(f"Total Bike Duration: {round(sum(self.bike_data.elapsed_time)/60/60):,} hours")
         print(f"Total Bike Distance: {round(sum(self.bike_data.miles)):,} miles")
-        print(f"Total Bike Elevation Gain: {round(sum(self.bike_data.total_elevation_gain)):,} feet")
+        print(f"Total Bike Elevation Gain: {round(sum(self.bike_data.elevation)):,} feet")
 
         print ("\n" + ("*"*28) + " Strength Stats " + ("*"*29) + "\n")
 
@@ -140,7 +140,7 @@ class yearlyReport:
 
         print(f"\nTotal Elevation Gain:\n")
         for year in self.data.year.unique():
-            print(f"{year}: {round(self.data.loc[self.data.year == year]['total_elevation_gain'].sum()):,} feet")
+            print(f"{year}: {round(self.data.loc[self.data.year == year]['elevation'].sum()):,} feet")
         
         print ("\n" + ("*"*27) + " Boulder Stats " + ("*"*27) + "\n")
         
@@ -167,14 +167,14 @@ class yearlyReport:
             print(f"{year}: {round((self.run_data.loc[self.run_data.year == year]['elapsed_time'].sum())/60/60):,} hours")
 
         # print(f"Total Run Distance: {round(sum(self.run_data.miles)):,} miles")
-        # print(f"Total Run Elevation Gain: {round(sum(self.run_data.total_elevation_gain)):,} feet")
+        # print(f"Total Run Elevation Gain: {round(sum(self.run_data.elevation)):,} feet")
 
         # print ("\n" + ("*"*29) + " Bike Stats " + ("*"*29) + "\n")
 
         # print(f"Total Bike Activities: {len(self.bike_data):,}")
         # print(f"Total Bike Duration: {round(sum(self.bike_data.elapsed_time)/60/60):,} hours")
         # print(f"Total Bike Distance: {round(sum(self.bike_data.miles)):,} miles")
-        # print(f"Total Bike Elevation Gain: {round(sum(self.bike_data.total_elevation_gain)):,} feet")
+        # print(f"Total Bike Elevation Gain: {round(sum(self.bike_data.elevation)):,} feet")
 
         # print ("\n" + ("*"*28) + " Strength Stats " + ("*"*29) + "\n")
 
