@@ -1,4 +1,4 @@
-# visit http://127.0.0.1:8050/ in your web browser.
+# visit http://0.0.0.0:8050/ in your web browser.
 
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc

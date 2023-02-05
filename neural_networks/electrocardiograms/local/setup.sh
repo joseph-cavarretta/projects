@@ -17,7 +17,7 @@ locate start-slave.sh
 /opt/spark/bin/spark-shell
 
 # OR start pyspark shell
-$ /opt/spark/bin/pyspark
+/opt/spark/bin/pyspark
 
 # shut down processes
 SPARK_HOME/sbin/stop-slave.sh
