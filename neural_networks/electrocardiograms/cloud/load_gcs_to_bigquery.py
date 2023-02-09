@@ -2,8 +2,9 @@ from google.cloud import bigquery
 
 
 PROJECT_ID = "joe-test-project-373803"
-TRAIN_FILE_GCS_URI = f"gs://{PROJECT_ID}/electrocardiograms/data/mitbih_train.csv"
-TEST_FILE_GCS_URI = f"gs://{PROJECT_ID}/electrocardiograms/data/mitbih_test.csv"
+BUCKET_ID = "joe-test-bucket-373803"
+TRAIN_FILE_GCS_URI = f"gs://{BUCKET_ID}/electrocardiograms/data/train_subset.csv"
+TEST_FILE_GCS_URI = f"gs://{BUCKET_ID}/electrocardiograms/data/test_subset.csv"
 TRAIN_TABLE_ID = f"{PROJECT_ID}.electrocardiograms.processed_train_data"
 TEST_TABLE_ID = f"{PROJECT_ID}.electrocardiograms.processed_test_data"
 
@@ -14,7 +15,8 @@ def load_bigquery(GCS_URI, TABLE_ID):
         autodetect = True,
         source_format = bigquery.SourceFormat.CSV,
         create_disposition = 'CREATE_IF_NEEDED',
-        write_disposition = 'WRITE_TRUNCATE'
+        write_disposition = 'WRITE_TRUNCATE',
+        skip_leading_rows = 1
         )
 
     load_job = client.load_table_from_uri(

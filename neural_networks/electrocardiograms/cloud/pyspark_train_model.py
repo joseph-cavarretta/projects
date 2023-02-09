@@ -16,8 +16,8 @@ sc = SparkContext()
 spark = SparkSession(sc)
 sc.setLogLevel("ERROR")
 
-PROJECT = ''
-GCS_BUCKET_PATH = ''
+PROJECT = 'joe-test-project-373803'
+GCS_BUCKET_PATH = 'gs://joe-test-bucket-373803/electrocardiograms/model.pkl'
 BQ_TRAIN_TABLE = 'electrocardiograms.processed_train_data'
 BQ_TEST_TABLE = 'electrocardiograms.processed_test_data'
 
@@ -33,10 +33,10 @@ def main():
 
 def load_data():
     train_set = spark.read.format("bigquery").option(
-        "table", BQ_TRAIN_TABLE).load()
+        "table", f"{PROJECT}.{BQ_TRAIN_TABLE}").load()
 
     test_set = spark.read.format("bigquery").option(
-        "table", BQ_TEST_TABLE).load()
+        "table", f"{PROJECT}.{BQ_TEST_TABLE}").load()
 
     return (train_set, test_set)
 
@@ -51,7 +51,7 @@ def train_model(train_data):
     feature_cols = train_data.select(train_data.columns[:-1])
 
     indexer = StringIndexer(
-        inputCol='_c187', 
+        inputCol='double_field_187', 
         outputCol="label"
     )
     assembler = VectorAssembler(
