@@ -3,8 +3,8 @@ from google.cloud import bigquery
 
 PROJECT_ID = "joe-test-project-373803"
 BUCKET_ID = "joe-test-bucket-373803"
-TRAIN_FILE_GCS_URI = f"gs://{BUCKET_ID}/electrocardiograms/data/train_subset.csv"
-TEST_FILE_GCS_URI = f"gs://{BUCKET_ID}/electrocardiograms/data/test_subset.csv"
+TRAIN_FILE_GCS_URI = f"gs://{BUCKET_ID}/electrocardiograms/data/mitbih_train.csv"
+TEST_FILE_GCS_URI = f"gs://{BUCKET_ID}/electrocardiograms/data/mitbih_test.csv"
 TRAIN_TABLE_ID = f"{PROJECT_ID}.electrocardiograms.processed_train_data"
 TEST_TABLE_ID = f"{PROJECT_ID}.electrocardiograms.processed_test_data"
 
