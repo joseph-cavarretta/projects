@@ -2,6 +2,7 @@
 
 This project contains a deep neural network clssifiction model to classify electrocardiogram signals  
 as one of these 5 categories:  
+
 • N: Normal beat  
 • S: Supraventricular premature beat  
 • V: Premature ventricular contraction  
@@ -15,9 +16,9 @@ but is slightly compressed as the beat occurs prematurely.
 
 ## Implementations
 **Local:**  
-• EKG_nn.ipynb - this file implements the model as a multi-layer perceptron using Sci-kit Learn  
-• EKG_nn_pyspark.ipynb - this file implements the model using a local instance of Spark and the Spark ML Library  
+• EKG_nn.ipynb - implements the model as a multi-layer perceptron using Sci-kit Learn  
+• EKG_nn_pyspark.ipynb - implements the model using a local instance of Spark and the Spark ML Library  
 
 **Cloud:**  
-• pyspark_train_model.py - this file implements the model in a Google Cloud Platform instance of Spark  
+• pyspark_train_model.py - implements the model in a Google Cloud Platform instance of Spark  
 running on a Google Dataproc cluster. Data is stored in Cloud Storage and BigQuery.  
