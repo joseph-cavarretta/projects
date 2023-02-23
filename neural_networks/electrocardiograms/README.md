@@ -1,4 +1,4 @@
-## Cardiac Arrythmia Classification
+# Cardiac Arrythmia Classification
 
 This project contains a deep neural network clssifiction model to classify electrocardiogram signals
 as one of these 5 categories:
@@ -9,11 +9,11 @@ as one of these 5 categories:
 • Q: Unclassifiable beat
 
 The best performing model implementation currently achieves an F-1 score of 0.97.
-It's weakest classification performance is in predicting premature ventricular contractions currently.
+The weakest classification performance is in predicting premature ventricular contractions currently.
 These types of arrythmias present a unique challenge in which the signal may look very normal,
 but is slightly compressed as the beat occurs prematurely.
 
-#### Implementations
+## Implementations
 **Local:**
 • EKG_nn.ipynb - this file implements the model as a multi-layer perceptron using Sci-kit Learn
 • EKG_nn_pyspark.ipynb - this file implements the model using a local instance of Spark and the Spark ML Library
