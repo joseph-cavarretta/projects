@@ -77,7 +77,7 @@ def get_bear_peak_counts(dataframe):
 
      # if repeated summits, activity name is like 'bear peak x2'
      criteria_1 = df.name.str.contains(key_x, case=False, na=False)
-     df.loc[criteria_1, col_name] = df.loc[criteria_1]['name'].str[-1].astype(int)
+     df.loc[criteria_1, col_name] = df.loc[criteria_1]['name'].str.strip().str[-1].astype(int)
 
      # otherwise one for each single summit labelled like 'bear peak' and skyline traverse which include bear peak
      criteria_2 = (((df.name.str.contains(key, case=False, na=False)) & 
@@ -87,7 +87,7 @@ def get_bear_peak_counts(dataframe):
 
      # if activity name includes 'summit repeat' add one additional for each summit repeat
      criteria_3 = df.name.str.contains('summit repeat', case=False, na=False)
-     df.loc[criteria_3, col_name] += df.loc[criteria_3]['name'].str[-1].astype(int)
+     df.loc[criteria_3, col_name] += df.loc[criteria_3]['name'].str.strip().str[-1].astype(int)
 
 
 def get_sanitas_counts(dataframe):
@@ -100,7 +100,7 @@ def get_sanitas_counts(dataframe):
 
      # if repeated summits, activity name is like 'sanitas x2'
      criteria_1 = df.name.str.contains(key_x, case=False, na=False)
-     df.loc[criteria_1, col_name] = df.loc[criteria_1]['name'].str[-1].astype(int)
+     df.loc[criteria_1, col_name] = df.loc[criteria_1]['name'].str.strip().str[-1].astype(int)
 
      # otherwise one for each single summit labelled like 'sanitas' and skyline traverse which include sanitas
      criteria_2 = (((df.name.str.contains(key, case=False, na=False)) & 
@@ -121,7 +121,7 @@ def get_second_flatiron_counts(dataframe):
 
      # if repeated summits, activity name is like '2nd flatiron x2'
      criteria_1 = df.name.str.contains(key_x, case=False, na=False)
-     df.loc[criteria_1, col_name] = df.loc[criteria_1]['name'].str[-1].astype(int)
+     df.loc[criteria_1, col_name] = df.loc[criteria_1]['name'].str.strip().str[-1].astype(int)
 
      # otherwise one for each single summit labelled like '2nd flatiron'
      criteria_2 = ((df.name.str.contains(key, case=False, na=False)) & 
