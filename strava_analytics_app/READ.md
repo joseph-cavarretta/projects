@@ -15,7 +15,7 @@ This project exports all of a users activities from the Strava REST API, transfo
 ![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
 ![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white)
 
-## To Run App
+## Run App
 Run the following commands in your terminal from the root project directory:
 ```
 chmod +x scripts/build.sh
@@ -28,8 +28,9 @@ source scripts/run.sh
 ```
 Visit localhost http://0.0.0.0:8050/ in your browser to view data
 
-## To load data into a local MySQL database instance
-Make sure you have MySQL running locally and run the following commands in yur terminal:
+## Load MySQL
+To load processed data into a local MySQL database instance:
+Make sure you have MySQL running locally and run the following commands in yur terminal
 ```
 mysql -u root -p -e "source create_database.sql"
 mysql --local_infile=1 -u root -p -e "source load_data.sql"
