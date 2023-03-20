@@ -28,7 +28,12 @@ source scripts/run.sh
 ```
 Visit localhost http://0.0.0.0:8050/ in your browser to view data
 
-**Note:** To load data into a local MySQL database instance, make sure you have MySQL running locally.
+## To load data into a local MySQL database instance
+Make sure you have MySQL running locally and run the following commands in yur terminal:
+```
+mysql -u root -p -e "source create_database.sql"
+mysql --local_infile=1 -u root -p -e "source load_data.sql"
+```
 
 ## Developed by:
 Joseph Cavarretta |
