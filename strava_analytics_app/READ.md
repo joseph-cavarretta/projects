@@ -21,7 +21,7 @@ Run the following commands in your terminal from the root project directory:
 chmod +x scripts/build.sh
 chmod +x scripts/run.sh
 ```
-Make sure your Docker Daemon is running
+Make sure your Docker Daemon is running, and then run the following:
 ```
 source scripts/build.sh
 source scripts/run.sh
@@ -29,7 +29,7 @@ source scripts/run.sh
 Visit localhost http://0.0.0.0:8050/ in your browser to view data
 
 ## Load MySQL
-To load processed data into a local MySQL database instance:
+To load processed data into a local MySQL database instance:  
 Make sure you have MySQL running locally and run the following commands in yur terminal
 ```
 mysql -u root -p -e "source create_database.sql"
