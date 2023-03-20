@@ -148,7 +148,8 @@ def bar_chart_by_week(dataframe, x=None, y=None, title=None):
         title_font_family=TITLE_FONT,
         xaxis_title='',
         yaxis_title='',
-        height=BAR_PROPS['height']
+        height=BAR_PROPS['height'],
+        xaxis_type='category'
     )
     barchart.update_yaxes(
         ticksuffix=' ',
@@ -156,7 +157,8 @@ def bar_chart_by_week(dataframe, x=None, y=None, title=None):
     )
     barchart.update_xaxes(
         tickprefix=' ',
-        tickfont=dict(size=11)
+        tickfont=dict(size=11),
+        type='category'
     )
     return barchart
 

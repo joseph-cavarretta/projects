@@ -1,53 +1,3 @@
-"""
-Created on Fri Sept 2 18:02:33 2022
-@author: joseph.cavarretta
-"""
-import pandas as pd
-
-def main():
-    df = load_data()
-    reports = ['overall', 'yearly', 'run', 'climb', 'strength']
-    print("\n"+ ("=" * 70))
-    print("Which activity report would you like to generate?")
-    print("=" * 70)
-    print("Enter one of the following options:")
-    print(reports)
-    report_type = input(">> ")
-
-    if not report_type.lower() in reports:
-        raise SystemExit("Not a valid entry. Report cancelled.")
-
-    print_report(report_type, df)
-
-
-def load_data():
-    path = 'data/processed_activities.csv'
-    data = pd.read_csv(path)
-    return data
-
-
-def print_report(report_type, dataframe):
-    if report_type.lower() == 'overall':
-        rep = overallReport(dataframe)
-        rep.print_report()
-
-    if report_type.lower() == 'yearly':
-        rep = yearlyReport(dataframe)
-        rep.print_report()
-
-    if report_type.lower() == 'run':
-        rep = runReport(dataframe)
-        rep.print()
-
-    if report_type.lower() == 'climb':
-        rep = climbingReport(dataframe)
-        rep.print()
-
-    if report_type.lower() == 'strength':
-        rep = strengthReport(dataframe)
-        rep.print()
-
-
 class overallReport:
     def __init__(self, dataframe):
         self.data = dataframe
@@ -58,11 +8,7 @@ class overallReport:
         
     def print_report(self):
         self.print_summary_stats()
-        #self.print_run_stats()
-        #self.print_bike_stats()
-        #self.print_strength_stats()
-        #self.print_climb_stats()
-    
+
     def print_summary_stats(self):
         print("\n" + ("*"*27) + " SUMMARY STATS " + ("*"*27) + "\n")
         print(f"Total Activities: {len(self.data):,}")
@@ -103,11 +49,6 @@ class overallReport:
         print(f"Total Indoor Boulders: {sum(self.strength_data.indoor_boulder_count):,}")
         print(f"Total Outdoor Boulders: {sum(self.climb_data.outdoor_boulder_count):,}")
         
-        # this should be the metrics I want to see most frequent
-        # specific sport reports more granular
-        # previous month totals and delta or each metric
-        # % by sport
-        
 
 class yearlyReport:
     def __init__(self, dataframe):
@@ -119,10 +60,6 @@ class yearlyReport:
         
     def print_report(self):
         self.print_summary_stats()
-        #self.print_run_stats()
-        #self.print_bike_stats()
-        #self.print_strength_stats()
-        #self.print_climb_stats()
     
     def print_summary_stats(self):
         print("\n" + ("*"*27) + " YEARLY STATS " + ("*"*27) + "\n")
@@ -214,7 +151,3 @@ class climbingReport:
     # total pitches
     # total sessions
     # indoor vs outdoor
-
-
-if __name__ == '__main__':
-    main()
