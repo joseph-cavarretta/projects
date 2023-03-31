@@ -7,4 +7,4 @@ net start mysql;
 mysql -u root -p;
 
 # stop service
-new stop mysql;
+net stop mysql;
